@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نتایج نهایی پانزدهمین جشنواره فروش بیمه‌های زندگی | گروه الماس+</title>
+
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
+
+<style>
+:root {
+  --green-dark: #5a6b4d;
+  --green-mid: #7a8a6c;
+  --green-light: #9aab8c;
+  --gold-main: #c9a961;
+  --gold-light: #e0c586;
+  --gold-dark: #a88840;
+  --cream: #f7f3e8;
+  --text-dark: #3a4a2e;
+  --text-mid: #5a6b4d;
+  --peach-bg: #ffe8d1;
+  --red-accent: #c0392b;
+  --orange-accent: #e07b39;
+  --shadow-soft: 0 4px 20px rgba(90, 107, 77, 0.15);
+  --shadow-strong: 0 15px 40px rgba(90, 107, 77, 0.25);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  font-family: 'Vazirmatn', Tahoma, sans-serif;
+  direction: rtl;
+  text-align: right;
+  background: #f0ede5;
+  color: var(--text-dark);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ============================================================
+   مدیریت صفحه‌ها
+   ============================================================ */
+.screen {
+  display: none;
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+}
+
+.screen.active {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* ============================================================
+   صفحه اول: پاکت
+   ============================================================ */
+#envelope-screen {
+  background-image: url('assets/background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+#envelope-screen::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.3) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.envelope-page-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 100vh;
+  width: 100%;
+  padding: 3vh 20px 3vh;
+}
+
+/* ⭐ لوگو در بالای صفحه */
+.company-logo-top {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  animation: fadeInDown 1s ease backwards;
+  flex-shrink: 0;
+}
+
+.company-logo-top img {
+  max-width: 260px;
+  width: 60%;
+  height: auto;
+  filter: drop-shadow(0 4px 12px rgba(90, 107, 77, 0.2));
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ⭐ متن عنوان در کادر نارنجی پاستیلی */
+.festival-title {
+  text-align: center;
+  padding: 12px 24px;
+  animation: fadeInDown 1s ease 0.2s backwards;
+  background: var(--peach-bg);
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(90, 107, 77, 0.1);
+  max-width: 90%;
+  flex-shrink: 0;
+}
+
+/* ⭐ خط مدیریت امور نمایندگان و کارگزاران */
+.festival-department {
+  display: block;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--orange-accent);
+  margin-bottom: 8px;
+  line-height: 1.5;
+  letter-spacing: -0.2px;
+}
+
+.festival-title h1 {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--green-dark);
+  margin-bottom: 2px;
+  line-height: 1.5;
+  text-shadow: none;
+  letter-spacing: -0.5px;
+}
+
+.festival-title h1 .red-text {
+  color: var(--red-accent);
+}
+
+.festival-title h1 span {
+  display: block;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-mid);
+  margin-top: 4px;
+}
+
+.title-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 8px auto 0;
+  max-width: 220px;
+}
+
+.title-divider::before,
+.title-divider::after {
+  content: '';
+  flex: 1;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, var(--gold-main), transparent);
+}
+
+.title-divider span {
+  color: var(--gold-main);
+  font-size: 14px;
+  letter-spacing: 6px;
+}
+
+/* ⭐ پاکت در وسط صفحه */
+.envelope-wrapper {
+  position: relative;
+  max-width: 420px;
+  width: 80%;
+  cursor: pointer;
+  perspective: 1500px;
+  transform-style: preserve-3d;
+  animation: floatEnvelope 4s ease-in-out infinite;
+  animation-delay: 0.4s;
+  flex-shrink: 0;
+}
+
+@keyframes floatEnvelope {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.envelope-wrapper:hover {
+  animation-play-state: paused;
+}
+
+.envelope-wrapper:active {
+  transform: scale(0.97);
+}
+
+.envelope-image-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 
+    0 25px 60px rgba(90, 107, 77, 0.3),
+    0 0 0 1px rgba(201, 169, 97, 0.2);
+  transition: all 0.5s ease;
+  background: #7a8a6c;
+}
+
+.envelope-wrapper:hover .envelope-image-container {
+  box-shadow: 
+    0 30px 70px rgba(90, 107, 77, 0.4),
+    0 0 0 3px rgba(201, 169, 97, 0.4);
+  transform: translateY(-5px);
+}
+
+.envelope-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* ⭐ متن راهنما زیر پاکت */
+.envelope-hint {
+  position: relative;
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--text-mid);
+  padding: 10px 25px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: var(--shadow-soft);
+  white-space: nowrap;
+  animation: pulseHint 2.2s ease-in-out infinite;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(201, 169, 97, 0.3);
+  flex-shrink: 0;
+}
+
+@keyframes pulseHint {
+  0%, 100% { opacity: 0.85; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(-5px); }
+}
+
+/* انیمیشن باز شدن */
+.envelope-wrapper.opening {
+  animation: openAnimation 1.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  pointer-events: none;
+}
+
+@keyframes openAnimation {
+  0% { transform: translateY(0) scale(1) rotateX(0deg); opacity: 1; }
+  35% { transform: translateY(-18px) scale(1.08) rotateX(-8deg); opacity: 1; }
+  70% { transform: translateY(-48px) scale(1.28) rotateX(-22deg); opacity: 0.72; }
+  100% { transform: translateY(-82px) scale(1.48) rotateX(-35deg); opacity: 0; }
+}
+
+.envelope-wrapper.opening ~ .envelope-hint {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* ============================================================
+   صفحه دوم: نتایج
+   ============================================================ */
+#winners-screen {
+  background-color: #faf7f0;
+  background-image: 
+    linear-gradient(180deg, #f7f3e8 0%, #faf7f0 100%);
+  padding: 0;
+  align-items: flex-start;
+  overflow-y: auto;
+}
+
+.winners-page-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 30px 40px 60px;
+  flex: 1;
+}
+
+.company-logo-top-winners {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 0 25px;
+  animation: fadeInDown 0.8s ease;
+}
+
+.company-logo-top-winners img {
+  max-width: 280px;
+  width: 60%;
+  height: auto;
+  filter: drop-shadow(0 4px 12px rgba(90, 107, 77, 0.15));
+}
+
+/* ⭐ استایل تصویر مدال الماس+ */
+.bronze-medal-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  animation: fadeInDown 1s ease 0.2s backwards;
+}
+
+.bronze-medal-image img {
+  max-width: 220px;
+  width: 50%;
+  height: auto;
+  filter: drop-shadow(0 8px 20px rgba(201, 169, 97, 0.3));
+  transform-origin: center;
+}
+
+/* درخشش طلایی مدال الماس+ */
+#winners-screen.medal-intro .bronze-medal-image img {
+  animation: diamondMedalGlow 1.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes diamondMedalGlow {
+  0% {
+    transform: scale(0.88);
+    filter: drop-shadow(0 0 0 rgba(201, 169, 97, 0));
+  }
+  35% {
+    transform: scale(1.04);
+    filter:
+      drop-shadow(0 0 12px rgba(224, 197, 134, 0.95))
+      drop-shadow(0 0 30px rgba(201, 169, 97, 0.75));
+  }
+  65% {
+    transform: scale(1.01);
+    filter:
+      drop-shadow(0 0 22px rgba(224, 197, 134, 1))
+      drop-shadow(0 0 42px rgba(201, 169, 97, 0.85));
+  }
+  100% {
+    transform: scale(1);
+    filter:
+      drop-shadow(0 8px 20px rgba(201, 169, 97, 0.55))
+      drop-shadow(0 0 16px rgba(224, 197, 134, 0.45));
+  }
+}
+
+/* ابتدا فقط مدال دیده می‌شود؛ سپس محتوای نتایج ظاهر می‌شود */
+#winners-screen.medal-intro .company-logo-top-winners,
+#winners-screen.medal-intro .letter-header,
+#winners-screen.medal-intro .winners-table-wrapper,
+#winners-screen.medal-intro .download-section {
+  opacity: 0;
+  visibility: hidden;
+}
+
+#winners-screen.results-revealed .company-logo-top-winners,
+#winners-screen.results-revealed .letter-header,
+#winners-screen.results-revealed .winners-table-wrapper,
+#winners-screen.results-revealed .download-section {
+  animation: resultsFadeIn 0.65s ease both;
+}
+
+@keyframes resultsFadeIn {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.letter-header {
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 10px 20px;
+}
+
+.letter-subtitle {
+  font-size: 18px;
+  color: var(--text-mid);
+  font-weight: 500;
+  margin-bottom: 6px;
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.8);
+}
+
+/* ⭐ مدیریت امور نمایندگان و کارگزاران (صفحه دوم) */
+.letter-department {
+  display: block;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--orange-accent);
+  margin-top: 6px;
+  line-height: 1.6;
+  letter-spacing: -0.2px;
+}
+
+.letter-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin: 22px auto;
+  max-width: 280px;
+}
+
+.letter-divider::before,
+.letter-divider::after {
+  content: '';
+  flex: 1;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, var(--gold-main), transparent);
+}
+
+.letter-divider span {
+  color: var(--gold-main);
+  font-size: 18px;
+  letter-spacing: 8px;
+}
+
+.winners-table-wrapper {
+  position: relative;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(6px);
+  border-radius: 16px;
+  box-shadow: 
+    0 10px 40px rgba(90, 107, 77, 0.12),
+    0 0 0 1px rgba(201, 169, 97, 0.25);
+  overflow: hidden;
+  border: 1px solid rgba(201, 169, 97, 0.3);
+  margin-bottom: 20px;
+}
+
+.winners-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.winners-table thead th {
+  background: linear-gradient(180deg, var(--green-dark) 0%, var(--green-mid) 100%);
+  color: var(--cream);
+  padding: 18px 14px;
+  font-size: 15px;
+  font-weight: 700;
+  text-align: center;
+  white-space: nowrap;
+  letter-spacing: 0.3px;
+}
+
+.winners-table thead th:first-child {
+  border-top-right-radius: 16px;
+}
+
+.winners-table thead th:last-child {
+  border-top-left-radius: 16px;
+}
+
+.winners-table th.col-rank { width: 80px; }
+.winners-table th.col-unit { width: auto; }
+.winners-table th.col-branch { width: 180px; }
+.winners-table th.col-group { width: 120px; }
+.winners-table th.col-status { width: 110px; }
+.winners-table th.col-score { width: 140px; }
+
+.winners-table tbody tr {
+  background: rgba(255, 255, 255, 0.5);
+  transition: all 0.5s ease;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.winners-table tbody tr.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.winners-table tbody tr:nth-child(even) {
+  background: rgba(122, 138, 108, 0.06);
+}
+
+.winners-table tbody tr:hover {
+  background: rgba(201, 169, 97, 0.15);
+}
+
+.winners-table td {
+  padding: 15px 14px;
+  font-size: 15px;
+  color: var(--text-dark);
+  border-bottom: 1px solid rgba(201, 169, 97, 0.15);
+  vertical-align: middle;
+  text-align: center;
+}
+
+.winners-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.winners-table td.col-rank {
+  color: var(--green-dark);
+  font-weight: 700;
+  font-size: 17px;
+  font-variant-numeric: tabular-nums;
+}
+
+.winners-table td.col-unit {
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.winners-table td.col-branch {
+  color: var(--text-mid);
+}
+
+.winners-table td.col-group {
+  color: var(--text-mid);
+  font-weight: 600;
+}
+
+.winners-table td.col-status {
+  font-weight: 700;
+}
+
+.winners-table td.col-status .status-ok {
+  display: inline-block;
+  color: #2e7d32;
+  background: rgba(46, 125, 50, 0.1);
+  padding: 4px 14px;
+  border-radius: 14px;
+  font-size: 13px;
+}
+
+.winners-table td.col-status .status-fail {
+  display: inline-block;
+  color: #c0392b;
+  background: rgba(192, 57, 43, 0.1);
+  padding: 4px 14px;
+  border-radius: 14px;
+  font-size: 13px;
+}
+
+/* ⭐ ستون امتیاز نهایی */
+.winners-table td.col-score {
+  font-weight: 700;
+  font-size: 16px;
+  font-variant-numeric: tabular-nums;
+  color: var(--green-dark);
+  direction: ltr;
+  unicode-bidi: embed;
+}
+
+.winners-table tbody tr.rank-gold {
+  background: linear-gradient(90deg, rgba(201, 169, 97, 0.22) 0%, rgba(255, 255, 255, 0.6) 100%);
+}
+
+.winners-table tbody tr.rank-gold td {
+  color: var(--gold-dark);
+}
+
+.winners-table tbody tr.rank-gold td.col-rank {
+  color: var(--gold-dark);
+  font-size: 19px;
+  text-shadow: 0 0 8px rgba(201, 169, 97, 0.4);
+}
+
+.winners-table tbody tr.rank-gold td.col-score {
+  color: var(--gold-dark);
+}
+
+/* ⭐ بخش دکمه دانلود در گوشه چپ پایین */
+.download-section {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+  padding: 0 10px;
+}
+
+.download-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(135deg, var(--gold-main) 0%, var(--gold-dark) 100%);
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 30px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 6px 20px rgba(201, 169, 97, 0.4);
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.download-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(201, 169, 97, 0.6);
+  background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-main) 100%);
+}
+
+.download-btn:active {
+  transform: translateY(0);
+}
+
+.download-btn .icon {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.back-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--green-dark);
+  border: 2px solid var(--green-dark);
+  padding: 10px 22px;
+  border-radius: 30px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--shadow-soft);
+  transition: all 0.3s;
+  backdrop-filter: blur(10px);
+}
+
+.back-btn:hover {
+  background: var(--green-dark);
+  color: var(--cream);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-strong);
+}
+
+/* ============================================================
+   امضای سازنده (پایین صفحه)
+   ============================================================ */
+.creator-credit {
+  position: fixed;
+  bottom: 6px;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  text-align: center;
+  font-size: 10px;
+  font-weight: 400;
+  color: var(--text-mid);
+  opacity: 0.45;
+  letter-spacing: 0.5px;
+  pointer-events: none;
+  user-select: none;
+  font-family: 'Vazirmatn', Tahoma, sans-serif;
+  transition: opacity 0.3s ease;
+}
+
+.creator-credit:hover {
+  opacity: 0.8;
+}
+
+.creator-credit span {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(4px);
+}
+
+.creator-credit.on-winners {
+  color: #7a8a6c;
+  opacity: 0.4;
+}
+
+@media (max-width: 768px) {
+  .creator-credit {
+    font-size: 9px;
+    bottom: 4px;
+  }
+  .creator-credit span {
+    padding: 1px 8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .creator-credit {
+    transition: none;
+  }
+}
+
+/* ============================================================
+   موبایل
+   ============================================================ */
+@media (max-width: 768px) {
+  .envelope-page-content {
+    padding: 0.5vh 15px 0.5vh;
+    justify-content: space-between;
+    gap: 0;
+  }
+
+  .company-logo-top {
+    margin-top: -25px;
+    margin-bottom: -20px;
+  }
+
+  .festival-title {
+    margin-top: -25px;
+    margin-bottom: -20px;
+  }
+
+  .envelope-wrapper { 
+    margin-top: -30px;
+    margin-bottom: 0;
+  }
+
+  .envelope-hint { 
+    margin-top: -35px;
+    margin-bottom: 0;
+  }
+
+  .winners-page-content { padding: 20px 15px 50px; }
+
+  .company-logo-top-winners img {
+    max-width: 220px;
+    width: 65%;
+  }
+
+  .bronze-medal-image img {
+    max-width: 160px;
+    width: 45%;
+  }
+
+  .letter-subtitle { font-size: 15px; }
+  .letter-department { font-size: 14px; }
+
+  .back-btn {
+    top: 12px;
+    right: 12px;
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+
+  .winners-table th.col-rank { width: 50px; }
+  .winners-table th.col-branch { width: 100px; }
+  .winners-table th.col-group { width: 75px; }
+  .winners-table th.col-status { width: 70px; }
+  .winners-table th.col-score { width: 90px; }
+
+  .winners-table thead th { padding: 12px 5px; font-size: 10px; }
+  .winners-table td { padding: 10px 5px; font-size: 11px; }
+  .winners-table td.col-rank { font-size: 13px; }
+  .winners-table td.col-score { font-size: 12px; }
+
+  .winners-table tbody tr.rank-gold td.col-rank {
+    font-size: 15px;
+  }
+
+  .download-section {
+    padding: 0 5px;
+    margin-top: 15px;
+  }
+
+  .download-btn {
+    padding: 10px 20px;
+    font-size: 13px;
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 400px) {
+  .company-logo-top {
+    margin-top: -20px;
+    margin-bottom: -15px;
+  }
+
+  .festival-title {
+    margin-top: -20px;
+    margin-bottom: -15px;
+  }
+
+  .envelope-wrapper { 
+    margin-top: -25px;
+    margin-bottom: 0;
+  }
+
+  .envelope-hint { 
+    margin-top: -30px;
+    margin-bottom: 0;
+  }
+
+  .bronze-medal-image img {
+    max-width: 130px;
+    width: 40%;
+  }
+}
+
+/* ============================================================
+   Responsive layout improvements — desktop, tablet and mobile
+   ============================================================ */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+}
+
+.screen {
+  min-height: 100vh;
+  min-height: 100svh;
+}
+
+#envelope-screen {
+  background-attachment: scroll;
+}
+
+.envelope-page-content {
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: clamp(16px, 3.5vh, 38px) clamp(14px, 3vw, 28px);
+  gap: clamp(14px, 2.8vh, 28px);
+  justify-content: space-between;
+}
+
+.company-logo-top img {
+  width: clamp(150px, 27vw, 260px);
+  max-width: 100%;
+}
+
+.festival-title {
+  width: fit-content;
+  max-width: min(900px, 100%);
+  padding: clamp(10px, 1.8vw, 16px) clamp(14px, 3vw, 28px);
+}
+
+.festival-department {
+  font-size: clamp(16px, 1.8vw, 20px);
+}
+
+.festival-title h1 {
+  font-size: clamp(17px, 2.1vw, 24px);
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+
+.festival-title h1 span {
+  font-size: clamp(14px, 1.6vw, 18px);
+}
+
+.envelope-wrapper {
+  width: clamp(220px, 42vw, 420px);
+  max-width: 100%;
+  margin: 0;
+  flex-shrink: 1;
+}
+
+.envelope-hint {
+  max-width: 100%;
+  white-space: normal;
+  text-align: center;
+  line-height: 1.7;
+  padding: 9px clamp(14px, 3vw, 25px);
+  font-size: clamp(12px, 1.4vw, 14px);
+}
+
+.winners-page-content {
+  width: 100%;
+  max-width: 1000px;
+  padding-inline: clamp(12px, 4vw, 40px);
+}
+
+.winners-table-wrapper {
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.winners-table {
+  min-width: 700px;
+}
+
+.winners-table thead th {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.back-btn {
+  top: max(12px, env(safe-area-inset-top));
+  right: max(12px, env(safe-area-inset-right));
+}
+
+@media (max-width: 768px) {
+  .envelope-page-content {
+    padding: max(14px, env(safe-area-inset-top)) 14px
+             max(18px, env(safe-area-inset-bottom));
+    gap: clamp(12px, 2.5vh, 22px);
+    justify-content: space-evenly;
+  }
+
+  .company-logo-top,
+  .festival-title,
+  .envelope-wrapper,
+  .envelope-hint {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .company-logo-top img {
+    width: clamp(135px, 42vw, 220px);
+  }
+
+  .festival-title {
+    width: 100%;
+    max-width: 560px;
+  }
+
+  .festival-department {
+    font-size: clamp(14px, 3.8vw, 17px);
+    margin-bottom: 6px;
+  }
+
+  .festival-title h1 {
+    font-size: clamp(16px, 4.2vw, 22px);
+    letter-spacing: 0;
+  }
+
+  .festival-title h1 span {
+    font-size: clamp(13px, 3.5vw, 17px);
+  }
+
+  .envelope-wrapper {
+    width: min(76vw, 360px);
+  }
+
+  .envelope-hint {
+    width: fit-content;
+    max-width: 100%;
+  }
+
+  .winners-page-content {
+    padding: 72px 12px 32px;
+  }
+
+  .company-logo-top-winners {
+    padding-bottom: 16px;
+  }
+
+  .company-logo-top-winners img {
+    width: min(62%, 210px);
+  }
+
+  .bronze-medal-image {
+    margin-bottom: 14px;
+  }
+
+  .bronze-medal-image img {
+    width: min(42vw, 155px);
+    max-width: 100%;
+  }
+
+  .letter-header {
+    margin-bottom: 20px;
+    padding: 8px 6px;
+  }
+
+  .letter-subtitle {
+    font-size: clamp(14px, 3.8vw, 17px);
+    line-height: 1.8;
+  }
+
+  .letter-department {
+    font-size: clamp(12px, 3.4vw, 15px);
+  }
+
+  .letter-divider {
+    margin: 14px auto;
+  }
+
+  .winners-table {
+    min-width: 600px;
+  }
+
+  .download-btn {
+    width: 100%;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.7;
+  }
+}
+
+@media (max-width: 400px) {
+  .envelope-page-content {
+    padding-inline: 10px;
+    gap: 12px;
+  }
+
+  .festival-title {
+    padding: 10px 11px;
+    border-radius: 12px;
+  }
+
+  .festival-department {
+    font-size: clamp(13px, 3.9vw, 15px);
+    margin-bottom: 5px;
+  }
+
+  .festival-title h1 {
+    font-size: clamp(15px, 4.4vw, 17px);
+    line-height: 1.55;
+  }
+
+  .festival-title h1 span {
+    font-size: 13px;
+  }
+
+  .title-divider {
+    margin-top: 6px;
+    gap: 8px;
+  }
+
+  .title-divider span {
+    font-size: 12px;
+    letter-spacing: 3px;
+  }
+
+  .envelope-wrapper {
+    width: min(78vw, 300px);
+  }
+
+  .envelope-hint {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  .back-btn {
+    top: max(8px, env(safe-area-inset-top));
+    right: max(8px, env(safe-area-inset-right));
+    padding: 7px 12px;
+    font-size: 12px;
+  }
+}
+
+@media (max-height: 650px) and (max-width: 900px) {
+  .envelope-page-content {
+    min-height: 100vh;
+    min-height: 100svh;
+    justify-content: flex-start;
+    gap: 14px;
+    padding-top: 14px;
+    padding-bottom: 18px;
+  }
+
+  .envelope-wrapper {
+    width: clamp(180px, 38vh, 300px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     صفحه اول: پاکت
+     ============================================================ -->
+<div id="envelope-screen" class="screen active">
+  <div class="envelope-page-content">
+
+    <div class="company-logo-top">
+      <img src="assets/logo.png" alt="بیمه کارآفرین">
+    </div>
+
+    <div class="festival-title">
+      <span class="festival-department">مدیریت امور نمایندگان و کارگزاران</span>
+      <h1>
+        <span class="red-text">نتایج نهایی</span> پانزدهمین جشنواره تمدید بیمه‌های زندگی
+        <span>نیم‌سال اول 1405</span>
+      </h1>
+      <div class="title-divider"><span>✦ ✦ ✦</span></div>
+    </div>
+
+    <div class="envelope-wrapper" id="envelopeWrapper" onclick="openEnvelope()">
+      <div class="envelope-image-container">
+        <img src="assets/envelope.png" alt="پاکت نامه جشنواره" class="envelope-image">
+      </div>
+    </div>
+
+    <div class="envelope-hint" id="envelopeHint">
+      👆 برای مشاهده لیست اسامی کلیک کنید
+    </div>
+
+  </div>
+  <div class="creator-credit">
+    <span>Designed by P.Daryadel</span>
+  </div>
+</div>
+
+<!-- ============================================================
+     صفحه دوم: نتایج
+     ============================================================ -->
+<div id="winners-screen" class="screen">
+
+  <button class="back-btn" onclick="goBack()">← بازگشت</button>
+
+  <div class="winners-page-content">
+
+    <div class="company-logo-top-winners">
+      <img src="assets/logo.png" alt="بیمه کارآفرین">
+    </div>
+
+    <!-- تصویر مدال الماس+ -->
+    <div class="bronze-medal-image">
+      <img src="assets/medal.png" alt="مدال الماس+">
+    </div>
+
+    <header class="letter-header">
+      <p class="letter-subtitle">پانزدهمین جشنواره تمدید بیمه‌های زندگی</p>
+      <span class="letter-department">مدیریت امور نمایندگان و کارگزاران</span>
+      <div class="letter-divider"><span>✦ ✦ ✦</span></div>
+    </header>
+
+    <div class="winners-table-wrapper">
+      <table class="winners-table">
+        <thead>
+          <tr>
+            <th class="col-rank">رتبه</th>
+            <th class="col-unit">واحد معرف</th>
+            <th class="col-branch">شعبه سرپرستی</th>
+            <th class="col-group">گروه</th>
+            <th class="col-status">وضعیت</th>
+            <th class="col-score">امتیاز نهایی</th>
+          </tr>
+        </thead>
+        <tbody id="winners-tbody"></tbody>
+      </table>
+    </div>
+
+    <!-- ⭐ بخش دکمه دانلود PDF در گوشه چپ پایین جدول -->
+    <div class="download-section">
+      <a href="assets/t-tala-win.pdf" download class="download-btn">
+        <span class="icon">📥</span>
+        دانلود فایل PDF 
+      </a>
+    </div>
+
+  </div>
+  <div class="creator-credit on-winners">
+    <span>Designed by P.Daryadel</span>
+  </div>
+</div>
+
+<script>
+// داده‌ها از فایل Excel (نهایی اعلامی) — امتیاز نهایی انگلیسی با ۲ رقم اعشار
+const WINNERS_DATA = [
+  {"rank": 1, "unit": "فوزيه منصوري کد 1056", "branch": "شيراز کد 14", "group": "طلا", "status": "تحقق", "score": "100.00"},
+  {"rank": 2, "unit": "ريحانه شمس کد 1538", "branch": "کاشان کد 20", "group": "طلا", "status": "تحقق", "score": "43.83"},
+  {"rank": 3, "unit": "مرتضي فراوش کد 2000", "branch": "اهواز کد 10", "group": "طلا", "status": "تحقق", "score": "41.45"}
+];
+
+function fixPersian(text) {
+  if (!text) return "";
+  return String(text).replace(/ي/g, "ی").replace(/ك/g, "ک").replace(/ة/g, "ه");
+}
+
+function openEnvelope() {
+  const wrapper = document.getElementById("envelopeWrapper");
+  if (wrapper.classList.contains("opening")) return;
+  
+  wrapper.classList.add("opening");
+  
+  const hint = document.getElementById("envelopeHint");
+  if (hint) hint.style.opacity = "0";
+  
+  setTimeout(() => {
+    document.getElementById("envelope-screen").classList.remove("active");
+    const winnersScreen = document.getElementById("winners-screen");
+    winnersScreen.classList.add("active", "medal-intro");
+    winnersScreen.classList.remove("results-revealed");
+    window.scrollTo(0, 0);
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const medalDelay = reducedMotion ? 150 : 1800;
+
+    setTimeout(() => {
+      winnersScreen.classList.remove("medal-intro");
+      winnersScreen.classList.add("results-revealed");
+      loadWinners();
+    }, medalDelay);
+  }, 1800);
+}
+
+function loadWinners() {
+  const tbody = document.getElementById("winners-tbody");
+  
+  try {
+    const winners = [...WINNERS_DATA];
+    winners.sort((a, b) => a.rank - b.rank);
+    
+    tbody.innerHTML = "";
+    
+    winners.forEach((winner, i) => {
+      const tr = document.createElement("tr");
+      
+      if (winner.rank <= 3) {
+        tr.classList.add("rank-gold");
+      }
+      
+      const statusClass = winner.status === "تحقق" ? "status-ok" : "status-fail";
+      
+      tr.innerHTML = `
+        <td class="col-rank">${winner.rank}</td>
+        <td class="col-unit">${fixPersian(winner.unit)}</td>
+        <td class="col-branch">${fixPersian(winner.branch)}</td>
+        <td class="col-group">${fixPersian(winner.group)}</td>
+        <td class="col-status"><span class="${statusClass}">${fixPersian(winner.status)}</span></td>
+        <td class="col-score">${winner.score}</td>
+      `;
+      tbody.appendChild(tr);
+      
+      setTimeout(() => {
+        tr.classList.add("revealed");
+      }, 100 + i * 40);
+    });
+  } catch (err) {
+    console.error("خطا:", err);
+    tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;padding:30px;">خطا در بارگذاری داده‌ها</td></tr>`;
+  }
+}
+
+function goBack() {
+  const winnersScreen = document.getElementById("winners-screen");
+  winnersScreen.classList.remove("active", "medal-intro", "results-revealed");
+  document.getElementById("envelope-screen").classList.add("active");
+  
+  const wrapper = document.getElementById("envelopeWrapper");
+  wrapper.classList.remove("opening");
+  
+  const hint = document.getElementById("envelopeHint");
+  if (hint) hint.style.opacity = "1";
+  
+  document.getElementById("winners-tbody").innerHTML = "";
+}
+
+document.addEventListener("keydown", (e) => {
+  if (document.getElementById("winners-screen").classList.contains("active")) {
+    if (e.key === "Escape") goBack();
+  } else if (document.getElementById("envelope-screen").classList.contains("active")) {
+    if (e.key === " " || e.key === "Enter") {
+      e.preventDefault();
+      openEnvelope();
+    }
+  }
+});
+</script>
+</body>
+</html>
