@@ -480,7 +480,6 @@ html, body {
 .winners-table th.col-unit { width: auto; }
 .winners-table th.col-branch { width: 180px; }
 .winners-table th.col-group { width: 120px; }
-.winners-table th.col-status { width: 110px; }
 .winners-table th.col-score { width: 140px; }
 
 .winners-table tbody tr {
@@ -535,28 +534,6 @@ html, body {
 .winners-table td.col-group {
   color: var(--text-mid);
   font-weight: 600;
-}
-
-.winners-table td.col-status {
-  font-weight: 700;
-}
-
-.winners-table td.col-status .status-ok {
-  display: inline-block;
-  color: #2e7d32;
-  background: rgba(46, 125, 50, 0.1);
-  padding: 4px 14px;
-  border-radius: 14px;
-  font-size: 13px;
-}
-
-.winners-table td.col-status .status-fail {
-  display: inline-block;
-  color: #c0392b;
-  background: rgba(192, 57, 43, 0.1);
-  padding: 4px 14px;
-  border-radius: 14px;
-  font-size: 13px;
 }
 
 /* ⭐ ستون امتیاز نهایی */
@@ -765,7 +742,6 @@ html, body {
   .winners-table th.col-rank { width: 50px; }
   .winners-table th.col-branch { width: 100px; }
   .winners-table th.col-group { width: 75px; }
-  .winners-table th.col-status { width: 70px; }
   .winners-table th.col-score { width: 90px; }
 
   .winners-table thead th { padding: 12px 5px; font-size: 10px; }
@@ -1162,7 +1138,6 @@ body {
             <th class="col-unit">واحد معرف</th>
             <th class="col-branch">شعبه سرپرستی</th>
             <th class="col-group">گروه</th>
-            <th class="col-status">وضعیت</th>
             <th class="col-score">امتیاز نهایی</th>
           </tr>
         </thead>
@@ -1187,9 +1162,9 @@ body {
 <script>
 // داده‌ها از فایل Excel (نهایی اعلامی) — امتیاز نهایی انگلیسی با ۲ رقم اعشار
 const WINNERS_DATA = [
-  {"rank": 1, "unit": "فوزيه منصوري کد 1056", "branch": "شيراز کد 14", "group": "طلا", "status": "تحقق", "score": "100.00"},
-  {"rank": 2, "unit": "ريحانه شمس کد 1538", "branch": "کاشان کد 20", "group": "طلا", "status": "تحقق", "score": "43.83"},
-  {"rank": 3, "unit": "مرتضي فراوش کد 2000", "branch": "اهواز کد 10", "group": "طلا", "status": "تحقق", "score": "41.45"}
+  {"rank": 1, "unit": "فوزيه منصوري کد 1056", "branch": "شيراز کد 14", "group": "طلا", "score": "100.00"},
+  {"rank": 2, "unit": "ريحانه شمس کد 1538", "branch": "کاشان کد 20", "group": "طلا", "score": "43.83"},
+  {"rank": 3, "unit": "مرتضي فراوش کد 2000", "branch": "اهواز کد 10", "group": "طلا", "score": "41.45"}
 ];
 
 function fixPersian(text) {
@@ -1240,14 +1215,11 @@ function loadWinners() {
         tr.classList.add("rank-gold");
       }
       
-      const statusClass = winner.status === "تحقق" ? "status-ok" : "status-fail";
-      
       tr.innerHTML = `
         <td class="col-rank">${winner.rank}</td>
         <td class="col-unit">${fixPersian(winner.unit)}</td>
         <td class="col-branch">${fixPersian(winner.branch)}</td>
         <td class="col-group">${fixPersian(winner.group)}</td>
-        <td class="col-status"><span class="${statusClass}">${fixPersian(winner.status)}</span></td>
         <td class="col-score">${winner.score}</td>
       `;
       tbody.appendChild(tr);
@@ -1258,7 +1230,7 @@ function loadWinners() {
     });
   } catch (err) {
     console.error("خطا:", err);
-    tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;padding:30px;">خطا در بارگذاری داده‌ها</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="5" style="text-align:center;padding:30px;">خطا در بارگذاری داده‌ها</td></tr>`;
   }
 }
 
